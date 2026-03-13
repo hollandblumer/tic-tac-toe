@@ -62,9 +62,9 @@ I also included a small test file that checks a tie scenario to confirm the boar
 
 ---
 
-## Version 4 – Person vs Minimax algorithm 
+## Version 4 – Person vs Minimax algorithm
 
-This version builds off of Version 3 by replacing the random computer move selection with the minimax algorithm. I studied more about this algorithm here https://www.geeksforgeeks.org/artificial-intelligence/mini-max-algorithm-in-artificial-intelligence/ and watched The algorithm has a base of case of https://www.youtube.com/watch?v=5y2a0Zhgq0U&t=24s. 
+This version builds off of Version 3 by replacing the random computer move selection with the minimax algorithm. I studied more about this algorithm here https://www.geeksforgeeks.org/artificial-intelligence/mini-max-algorithm-in-artificial-intelligence/ and watched The algorithm has a base of case of https://www.youtube.com/watch?v=5y2a0Zhgq0U&t=24s.
 
 Instead of choosing any open square, the computer now evaluates every possible move and scores the outcome of the game tree.
 The base cases I used were:
@@ -75,9 +75,15 @@ The base cases I used were:
 The main things I had to think through here were:
 - Writing recursive game logic
 - Defining base cases for win, loss, and tie
-- Simulating future board states without permanently changing the real board
+- Pulling functionality like available squares out of computerMove()
+- Remembering to reset the board after simulating potential moves
 - Making sure the computer always chooses the best possible move
 
+I included an image of a scenario where it's the computer's move next, and I worked through the recursion logic (v4-notes.png).
+
+## Testing
+
+For testing here, I tried to win multiple times but couldn't which is a good sign.
 ---
 
 ## Future improvements

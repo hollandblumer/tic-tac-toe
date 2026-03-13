@@ -184,16 +184,13 @@ function minimax(testBoard, isMaximizing) {
 
 }
 
-// now editing the computer move to be about the actual move the computer does 
+// now editing the computer move to be about the actual move the computer does
 
 function computerMove(){
-    // I moved available squares out so im calling it here 
+    // I moved available squares out so im calling it here
     let availableSquares = getAvailableSquares(board);
     let bestScore = -2;
     let bestMove = null;
-
-
-
     for (let i = 0; i < availableSquares.length; i++) {
         let move = availableSquares[i];
         // okay the computer tries the move in the available squares
