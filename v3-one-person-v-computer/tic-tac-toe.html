@@ -1,0 +1,42 @@
+<!--
+    Version 3 - Person vs Computer Opponent Tic Tac Toe
+
+    This version builds off of Version 2 by replacing Player 2 with a computer that selects random spots on the board as long as they are available.
+    
+    The main things I had to think through here building off of v2 were:
+    - Tracking when it's the computer's turn
+    - Making sure the computer only selects available squares
+    - Updating the board after the computer moves
+    - Detecting ties and wins with the computer opponent
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Person vs Computer Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Person vs Computer Tic Tac Toe (Version 3)</h1>
+    <p id="status">Your turn! You are O</p>
+    <div class="board-container">
+      <div class="board">
+        <button class="square" id="0"></button>
+        <button class="square" id="1"></button>
+        <button class="square" id="2"></button>
+        <button class="square" id="3"></button>
+        <button class="square" id="4"></button>
+        <button class="square" id="5"></button>
+        <button class="square" id="6"></button>
+        <button class="square" id="7"></button>
+        <button class="square" id="8"></button>
+      </div>
+      <div class="win-line"></div>
+    </div>
+    <button onClick="startGame()" id="reset-button">Reset Game</button>
+    <script src="script.js"></script>
+    <script src="test.js"></script>
+  </body>
+</html>

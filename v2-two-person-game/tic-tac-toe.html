@@ -1,0 +1,44 @@
+<!--
+    Version 2 - Two Person Tic Tac Toe
+
+    This version builds off of Version 1 by adding another person to the game. Instead of only handling one person clicking around the board, the game now alternates between two people taking turns. This means I need to keep track of which player is selecting a square and switch between Player 1 and Player 2 after each valid move.
+
+    The main things I had to think through here were:
+    - Tracking the current player
+    - Switching turns only after a valid click
+    - Updating the status text so it reflects whose turn it is
+    - Making sure wins and ties still work correctly now that two people are involved
+    - Detecting ties
+    - Resetting the board so a new game starts cleanly
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Two Person Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Two Person Tic Tac Toe (Version 2)</h1>
+    <p id="status">Player 1's Turn! They are O</p>
+    <div class="board-container">
+      <div class="board">
+        <button class="square" id="0"></button>
+        <button class="square" id="1"></button>
+        <button class="square" id="2"></button>
+        <button class="square" id="3"></button>
+        <button class="square" id="4"></button>
+        <button class="square" id="5"></button>
+        <button class="square" id="6"></button>
+        <button class="square" id="7"></button>
+        <button class="square" id="8"></button>
+      </div>
+      <div class="win-line"></div>
+    </div>
+    <button onClick="startGame()" id="reset-button">Reset Game</button>
+    <script src="script.js"></script>
+    <script src="test.js"></script>
+  </body>
+</html>

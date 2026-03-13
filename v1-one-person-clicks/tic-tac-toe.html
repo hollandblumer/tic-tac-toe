@@ -1,0 +1,44 @@
+<!--
+  Version 1 – One Person Clicks
+
+  This first version focuses on just getting the board to respond when someone clicks on a square. That said, there is just one person playing here. The two biggest things I had to think through were preventing invalid clicks and resetting the board properly.
+
+  This version includes the following:
+  - Rendering the board with CSS Grid
+  - Adding click event listeners to each square
+  - Tracking the board state with an array
+  - Preventing someone from clicking a square that has already been played
+  - Preventing clicks after the game has finished
+  - Checking for wins and ties
+  - Resetting the board without leftover moves from the previous game
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe Version 1</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Tic Tac Toe Version 1</h1>
+    <p id="status">Your turn! You are O</p>
+    <div class="board-container">
+      <div class="board">
+        <button class="square" id="0"></button>
+        <button class="square" id="1"></button>
+        <button class="square" id="2"></button>
+        <button class="square" id="3"></button>
+        <button class="square" id="4"></button>
+        <button class="square" id="5"></button>
+        <button class="square" id="6"></button>
+        <button class="square" id="7"></button>
+        <button class="square" id="8"></button>
+      </div>
+      <div class="win-line"></div>
+    </div>
+    <button onClick="startGame()" id="reset-button">Reset Game</button>
+    <script src="script.js"></script>
+  </body>
+</html>
