@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
+body {
+  font-family: "Instrument Serif", sans-serif;
+  text-align: center;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+canvas {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.title {
+  text-align: center;
+}
+
+.title h1,
+.title h3 {
+  color: white;
+  filter: url(#chalkTexture);
+}
+
+.title h1 {
+  margin-bottom: 5px;
+}
+
+.title h3 {
+  margin-top: 0;
+  font-style: italic;
+}
+
+#status {
+  color: white;
+  font-size: 20px;
+  filter: url(#chalkTexture);
+}
+
+.board-container {
+  width: min(90vw, 420px);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin: 20px 0;
+}
+
+.square {
+  position: relative;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 30px;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.square .text,
+#reset-button .text {
+  display: inline-block;
+  filter: url(#chalkTexture);
+}
+
+#reset-button {
+  position: relative;
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: "Instrument Serif", sans-serif;
+  font-style: italic;
+}
+
+.square::after,
+.square::before {
+  content: "";
+  position: absolute;
+  background: rgb(239, 232, 232);
+  filter: url(#chalkTexture);
+  pointer-events: none;
+}
+
+/*
+  I made the chalk board lines 4px thick with width and height, so I had to shift them -1px outward and attach them to appropriate edges
+*/
+.square::after {
+  top: 0;
+  width: 4px;
+  height: 100%;
+  right: -2px;
+}
+
+.square::before {
+  left: 0;
+  width: 100%;
+  height: 4px;
+  bottom: -2px;
+}
+
+/*
+  Removing the focus outline because each square is a button, and the browser sometimes shows a default highlight when it keeps focus after clicking.
+*/
+.square:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.square:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.win-line {
+  display: none;
+}
+
+/* Removing outer borders. Since CSS selectors can't start with numbers, I added \3 in front of the ids */
+#\32::after,
+#\35::after,
+#\38::after {
+  display: none;
+}
+
+#\36::before,
+#\37::before,
+#\38::before {
+  display: none;
+}

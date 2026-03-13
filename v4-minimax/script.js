@@ -8,108 +8,104 @@ let currentPlayer = player1;
 const squares = document.querySelectorAll(".square");
 const status = document.getElementById("status");
 const winningCombinations = [
-    [1,4,7],
-    [2,5,8],
-    [0,4,8],
-    [6,4,2],
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,3,6],
-]
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [6, 4, 2],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+];
 let finished = false;
 startGame();
 
-function startGame(){
-    document.querySelector(".win-line").style.display = "none";
-    board = Array(9).fill("");
-    // console.log(board);
-    finished = false;
-    // The person still goes first
-    currentPlayer = player1;
-    status.textContent = "Your turn! You are O";
-    // Looping through each square, clearing the board, and attaching the click event so the player can make a move
-    for (let i = 0; i< squares.length; i++){
-        squares[i].innerText = '';
-        // Removing any exisiting click event listeners in case the game resets to avoid duplicates
-        squares[i].removeEventListener("click", handleSquareClick);
-        // Now I'm re-adding it
-        squares[i].addEventListener("click", handleSquareClick);
-    }
+function startGame() {
+  board = Array(9).fill("");
+  // console.log(board);
+  finished = false;
+  // The person still goes first
+  currentPlayer = player1;
+  status.textContent = "Your turn! You are O";
+  // Looping through each square, clearing the board, and attaching the click event so the player can make a move
+  for (let i = 0; i < squares.length; i++) {
+    squares[i].innerHTML = "";
+    // Removing any exisiting click event listeners in case the game resets to avoid duplicates
+    squares[i].removeEventListener("click", handleSquareClick);
+    // Now I'm re-adding it
+    squares[i].addEventListener("click", handleSquareClick);
+  }
 }
 
 function handleSquareClick(event) {
-    // Unlike v2, we do not want the computer to click
-    if (currentPlayer !== player1) {
-        return;
+  // Unlike v2, we do not want the computer to click
+  if (currentPlayer !== player1) {
+    return;
+  }
+  const square = event.currentTarget;
+  const squareId = square.id;
+  // Preventing someone from clicking a square that has already been clicked or clicking after the game is finished
+  if (board[squareId] !== "" || finished) {
+    return;
+  }
+  board[squareId] = currentPlayer;
+  square.innerHTML = `<span class="text">${currentPlayer}</span>`;
+  // console.log(board);
+  const winner = checkWin(currentPlayer);
+  if (winner) {
+    // need new status now that there are 2 players
+    if (currentPlayer === player1) {
+      status.textContent = "You win!";
+    } else {
+      status.textContent = "Computer wins!";
     }
-    const squareId = event.target.id;
-    // Preventing someone from clicking a square that has already been clicked or clicking after the game is finished
-    if (board[squareId] !== "" || finished ){
-        return;
-    }
-    board[squareId] = currentPlayer;
-    event.target.innerText = currentPlayer;
-    // console.log(board);
-    const winner = checkWin(currentPlayer);
-    if (winner) {
-        // need new status now that there are 2 players
-        if (currentPlayer === player1) {
-            status.textContent = "You win!";
-        } else {
-            status.textContent = "Computer wins!";
-        }
-        finished = true;
-        return;
-    }
-   // Checking if the current board is a tie before moving to the computer's turn
-    if (checkTie()) {
-        status.textContent = "It's a tie!";
-        finished = true;
-        return;
-    }
-    // Now after all these checks, it's the next player's turn so I'm adding a function that switches to the next player
-    switchPlayer();
-    // now it's the computer's turn to move
-    computerMove();
+    finished = true;
+    return;
+  }
+  // Checking if the current board is a tie before moving to the computer's turn
+  if (checkTie()) {
+    status.textContent = "It's a tie!";
+    finished = true;
+    return;
+  }
+  // Now after all these checks, it's the next player's turn so I'm adding a function that switches to the next player
+  switchPlayer();
+  // now it's the computer's turn to move
+  computerMove();
 }
 
 function checkWin(player) {
-    for (let combo of winningCombinations){
-        const [a, b, c] = combo;
-        if (
-            board[a] === player &&
-            board[b] === player &&
-            board[c] === player
-        ){
-            return true;
-        }
+  for (let combo of winningCombinations) {
+    const [a, b, c] = combo;
+    if (board[a] === player && board[b] === player && board[c] === player) {
+      return true;
     }
-    return false;
+  }
+  return false;
 }
 
 // adding a similar function to checkWin but used for the test boards created by the minimax algorithm
 function checkWinForTestBoard(testBoard, player) {
-    for (let combo of winningCombinations) {
-        const [a, b, c] = combo;
-        if (
-            testBoard[a] === player &&
-            testBoard[b] === player &&
-            testBoard[c] === player
-        ) {
-            return true;
-        }
+  for (let combo of winningCombinations) {
+    const [a, b, c] = combo;
+    if (
+      testBoard[a] === player &&
+      testBoard[b] === player &&
+      testBoard[c] === player
+    ) {
+      return true;
     }
-    return false;
+  }
+  return false;
 }
 
 function checkTie() {
-    return board.every((square) => square !== "");
+  return board.every((square) => square !== "");
 }
 
 // also adding a new checktie for test board
 function checkTieForTestBoard(testBoard) {
-    return testBoard.every((square) => square !== "");
+  return testBoard.every((square) => square !== "");
 }
 
 function switchPlayer() {
@@ -122,107 +118,104 @@ function switchPlayer() {
   }
 }
 
-
 // need to pull out the functionality for getting available squares as it will be needed for all the possible test boards generate by minimax
 function getAvailableSquares(testBoard) {
-    let availableSquares = [];
-    for (let i = 0; i < testBoard.length; i++) {
-        if (testBoard[i] === "") {
-            availableSquares.push(i);
-        }
+  let availableSquares = [];
+  for (let i = 0; i < testBoard.length; i++) {
+    if (testBoard[i] === "") {
+      availableSquares.push(i);
     }
-    return availableSquares;
+  }
+  return availableSquares;
 }
 
 // For the minimax recursion I need three base cases. If the computer X wins that returns 1 since X is the maximizing player. If player1 O wins that returns -1 since O is the minimizing player. If the board is full and nobody wins then it is a tie so return 0.
 
 function minimax(testBoard, isMaximizing) {
-    // base case: computer wins
-    if (checkWinForTestBoard(testBoard, computer)) {
-        return 1;
-    }
-    // base case: person wins
-    if (checkWinForTestBoard(testBoard, player1)) {
-        return -1;
-    }
-    // base case: tie
-    if (checkTieForTestBoard(testBoard)) {
-        return 0;
-    }
+  // base case: computer wins
+  if (checkWinForTestBoard(testBoard, computer)) {
+    return 1;
+  }
+  // base case: person wins
+  if (checkWinForTestBoard(testBoard, player1)) {
+    return -1;
+  }
+  // base case: tie
+  if (checkTieForTestBoard(testBoard)) {
+    return 0;
+  }
 
-    let availableSquares = getAvailableSquares(testBoard);
-    // If it is the computer's turn, it wants the highest score
-    if (isMaximizing) {
-        //  Need to start with something lower than any possible score (in this case -1 but this only applies to this scenario), so the first real score will always replace it
-        let bestScore = -2;
-
-        for (let i = 0; i < availableSquares.length; i++) {
-            let move = availableSquares[i];
-            testBoard[move] = computer;
-            let score = minimax(testBoard, false);
-            testBoard[move] = "";
-            bestScore = Math.max(bestScore, score);
-        }
-
-        return bestScore;
-    }
-
-    // if its player 1's turn they want the lowest score since they are the minimizing player so best score needs to be higher than 1
-    let bestScore = 2;
+  let availableSquares = getAvailableSquares(testBoard);
+  // If it is the computer's turn, it wants the highest score
+  if (isMaximizing) {
+    //  Need to start with something lower than any possible score (in this case -1 but this only applies to this scenario), so the first real score will always replace it
+    let bestScore = -2;
 
     for (let i = 0; i < availableSquares.length; i++) {
-        let move = availableSquares[i];
-
-        testBoard[move] = player1;
-        let score = minimax(testBoard, true);
-        testBoard[move] = "";
-
-        bestScore = Math.min(bestScore, score);
+      let move = availableSquares[i];
+      testBoard[move] = computer;
+      let score = minimax(testBoard, false);
+      testBoard[move] = "";
+      bestScore = Math.max(bestScore, score);
     }
 
     return bestScore;
+  }
 
+  // if its player 1's turn they want the lowest score since they are the minimizing player so best score needs to be higher than 1
+  let bestScore = 2;
+
+  for (let i = 0; i < availableSquares.length; i++) {
+    let move = availableSquares[i];
+
+    testBoard[move] = player1;
+    let score = minimax(testBoard, true);
+    testBoard[move] = "";
+
+    bestScore = Math.min(bestScore, score);
+  }
+
+  return bestScore;
 }
 
 // now editing the computer move to be about the actual move the computer does
 
-function computerMove(){
-    // I moved available squares out so im calling it here
-    let availableSquares = getAvailableSquares(board);
-    let bestScore = -2;
-    let bestMove = null;
-    for (let i = 0; i < availableSquares.length; i++) {
-        let move = availableSquares[i];
-        // okay the computer tries the move in the available squares
-        board[move] = computer;
-        // now the board looks like the computer just made a move
-        // so now its the player1's turn which is my maximizing is set to false
-        // if it was true the computer would play twice in a row
-        let score = minimax(board, false);
-        board[move] = "";
-        // If this move gives a better score than what we have seen so far, I need to update best score and store this move
-        if (score > bestScore) {
-            bestScore = score;
-            bestMove = move;
-        }
+function computerMove() {
+  // I moved available squares out so im calling it here
+  let availableSquares = getAvailableSquares(board);
+  let bestScore = -2;
+  let bestMove = null;
+  for (let i = 0; i < availableSquares.length; i++) {
+    let move = availableSquares[i];
+    // okay the computer tries the move in the available squares
+    board[move] = computer;
+    // now the board looks like the computer just made a move
+    // so now its the player1's turn which is my maximizing is set to false
+    // if it was true the computer would play twice in a row
+    let score = minimax(board, false);
+    board[move] = "";
+    // If this move gives a better score than what we have seen so far, I need to update best score and store this move
+    if (score > bestScore) {
+      bestScore = score;
+      bestMove = move;
     }
+  }
 
-    board[bestMove] = computer;
-    document.getElementById(bestMove).innerText = computer;
+  board[bestMove] = computer;
+  document.getElementById(bestMove).innerHTML =
+    `<span class="text">${computer}</span>`;
 
+  if (checkWin(computer)) {
+    status.textContent = "Computer wins!";
+    finished = true;
+    return;
+  }
 
-    if (checkWin(computer)) {
-        status.textContent = "Computer wins!";
-        finished = true;
-        return;
-    }
+  if (checkTie()) {
+    status.textContent = "It's a tie!";
+    finished = true;
+    return;
+  }
 
-
-    if (checkTie()) {
-        status.textContent = "It's a tie!";
-        finished = true;
-        return;
-    }
-
-    switchPlayer();
+  switchPlayer();
 }
