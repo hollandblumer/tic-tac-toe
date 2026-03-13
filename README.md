@@ -1,8 +1,10 @@
+Note: The GitHub account j5d5d5 is also mine. I updated my git configuration while working on this project, so some commits may appear under that username.
+
 # Tic-Tac-Toe
 
 This repository is organized by progression, starting with just a person clicking around the board, then moving to two human players, then human vs computer, and finally human vs minimax algorithm.
 
-I structured the project this way because I had to build my understanding step by step. I went back to basics and even started by playing Tic Tac Toe on paper again.
+I structured the project this way because I had to build my understanding step by step. I went back to basics and even started by playing Tic-Tac-Toe on paper again.
 
 Each folder represents a stage of the project as I added more logic and functionality.
 
@@ -87,7 +89,7 @@ For testing here, I tried to win multiple times but couldn't, which is a good si
 
 ## Design
 
-After I made sure everything was functional, I went back in and added some styling. I added a p5.js speckled background and an SVG filter to the lines and text that I got from this cool Tic Tac Toe example here for added dimension: https://codepen.io/jpdrecourt/pen/EyKWXJ
+After I made sure everything was functional, I went back in and added some styling. I added a p5.js speckled background and an SVG filter to the lines and text that I got from this cool Tic-Tac-Toe example here for added dimension: https://codepen.io/jpdrecourt/pen/EyKWXJ
 
 ---
 
