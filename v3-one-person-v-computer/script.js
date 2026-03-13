@@ -30,7 +30,7 @@ function startGame() {
   // Looping through each square, clearing the board, and attaching the click event so the player can make a move
   for (let i = 0; i < squares.length; i++) {
     squares[i].innerHTML = "";
-    // Removing any exisiting click event listeners in case the game resets to avoid duplicates
+    // Removing any existing click event listeners in case the game resets to avoid duplicates
     squares[i].removeEventListener("click", handleSquareClick);
     // Now I'm re-adding it
     squares[i].addEventListener("click", handleSquareClick);

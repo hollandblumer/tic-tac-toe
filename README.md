@@ -48,7 +48,7 @@ Manually tested for wins and ties.
 
 ## Version 3 – Person vs Computer
 
-In this version I'm replacing Player 2 with a computer opponent but the computer selects randomly.
+In this version I'm replacing Player 2 with a computer opponent that selects randomly.
 
 I thought through the following:
 
@@ -61,7 +61,7 @@ I thought through the following:
 
 ## Version 4 – Person vs Minimax algorithm
 
-This version builds off of Version 3 by replacing the random computer move selection with the minimax algorithm. Instead of choosing any open square, the computer now evaluates every possible move and scores the outcome of the game tree. I studied more about this algorithm here https://www.geeksforgeeks.org/artificial-intelligence/mini-max-algorithm-in-artificial-intelligence/ and watched this video explanation: https://www.youtube.com/watch?v=5y2a0Zhgq0U&t=24s.
+This version builds off of Version 3 by replacing the random computer move selection with the minimax algorithm. Instead of choosing any open square, the computer now evaluates every possible move and scores the outcome of the game tree. I learned more about this algorithm here https://www.geeksforgeeks.org/artificial-intelligence/mini-max-algorithm-in-artificial-intelligence/ and watched this video explanation: https://www.youtube.com/watch?v=5y2a0Zhgq0U&t=24s.
 
 The base cases I used were:
 
@@ -81,13 +81,13 @@ I included an image (v4-notes.png) of a scenario where it's the computer's move 
 
 ## Testing
 
-For testing here, I tried to win multiple times but couldn't which is a good sign.
+For testing here, I tried to win multiple times but couldn't, which is a good sign.
 
 ---
 
 ## Design
 
-After I made sure everything was functional, I went back in and added some styling. I added a p5.js speckled background and an SVG filter to the lines and text that I got from this cool Tic Tac Toe example here for added dimension: https://codepen.io/
+After I made sure everything was functional, I went back in and added some styling. I added a p5.js speckled background and an SVG filter to the lines and text that I got from this cool Tic Tac Toe example here for added dimension: https://codepen.io/jpdrecourt/pen/EyKWXJ
 
 ---
 
