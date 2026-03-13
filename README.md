@@ -1,4 +1,4 @@
-# Tic Tac Toe
+# Tic-Tac-Toe
 
 This repository is organized by progression, starting with just a person clicking around the board, then moving to two human players, then human vs computer, and finally human vs minimax algorithm.
 
